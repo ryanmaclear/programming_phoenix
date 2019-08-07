@@ -1,8 +1,10 @@
 defmodule Rumbl.User do
   use Ecto.Schema
+
   import Ecto
   import Ecto.Changeset
   import Ecto.Query
+
   alias Rumbl.User
 
   schema "users" do
@@ -15,9 +17,12 @@ defmodule Rumbl.User do
 
   end
 
-  def changeset(%User{} = model, params \\ :empty) do
+  # def changeset(%User{} = model, params \\ :empty) do   ## Original code from book - but the :empty does
+  #                                                       ## not return an invalid changeset, but rather generates
+  #                                                       ## an exception
+  def changeset(%User{} = model, params \\ %{}) do
     model
-    |> cast(params, ~w(name username), [])
+    |> cast(params, ~w(name username)a, [])
     |> validate_length(:username, min: 1, max: 20)
   end
 end
