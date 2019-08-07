@@ -28,10 +28,14 @@ defmodule RumblWeb.Auth do
       user && verify_pass(given_pass, user.password_hash) ->
         {:ok, login(conn, user)}
       user ->
-        {:error, :unauthorized, :conn}
+        {:error, :unauthorized, conn}
       true ->
         {:error, :not_found, conn}
     end
+  end
+
+  def logout(conn) do
+    configure_session(conn, drop: true)
   end
 
 end
