@@ -25,6 +25,7 @@ defmodule RumblWeb do
       import RumblWeb.Gettext
       alias RumblWeb.Router.Helpers, as: Routes
       import RumblWeb.Auth, only: [authenticate_user: 2]
+      import Ecto
     end
   end
 
